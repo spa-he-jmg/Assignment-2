@@ -26,12 +26,23 @@ export function startGame(event) {
     }
 }
 
-function handleTurn(event, game) {
-    // Get X
-    const cellX = event.target.dataset.x;
+function handleTurn(game) {
+    function curriedHandleTurn(event) {
+        // Get X
+        const cellX = event.target.datset.x;
 
-    // Get Y
-    const cellY = event.target.dataset.y;
+        // Get Y
+        const cellY = event.target.dataset.y;
 
-    
+        const turnResult = game.turn(cellX, cellY);
+
+        if (turnResult) {
+            event.target.textContent = game.player;
+            event.target.setAttribute("disabled", true);
+
+            if (turnResult === '') {
+                
+            }
+        }
+    }
 }

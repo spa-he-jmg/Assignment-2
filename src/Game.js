@@ -91,7 +91,7 @@ export class Game {
         let newOpp = this.player;
         this.player = this.opponent;
         this.opponent = newOpp;
-        return false;
+        return true;
     }
 
     restartGame() {
