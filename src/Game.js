@@ -1,18 +1,12 @@
 export class Game {
     constructor () {
 
-        // Track scores per round
-        this.scores = {
-            'X': 0,
-            'Y': 0
-        }
-
-        // Track turn
+        // Track turns
         this.turns = 9;
 
         // Track current player
-        this.player = false;
-        this.opponent = false;
+        this.player = 'X';
+        this.opponent = 'O';
 
         // Track marked cells
         this.marked = new Set();
@@ -42,9 +36,10 @@ export class Game {
 
     updatecount(x, y, cell) {
         
-        const spaceVectors = [`x${x}`, `y${y}`, 'crossA', 'crossB'];
+        // Set cell vectors
+        const cellVectors = [`x${x}`, `y${y}`, 'crossA', 'crossB'];
 
-        for (let vector of spaceVectors) {
+        for (let vector of cellVectors) {
 
             // Check if the current vector is dead
             if (this.gridVectors.get(vector) === 'dead') {
@@ -58,6 +53,7 @@ export class Game {
 
             // Check if opponent has current vector
             if ((this.player === 'X' && this.gridVectors.get(vector) > 0) || (this.player === 'O' && this.gridVectors.get(vector) < 0)) {
+                // Mark vector as dead
                  this.gridVectors.set(vector, 'dead');
                  continue;
             }
@@ -69,49 +65,28 @@ export class Game {
             count += playerCount;
             this.gridVectors.set(vector, count);
             
-            
+            // Check if there is no winner
             if (count !== -3 && count !== 3) {
                 continue;
             }
 
+            // Return winner
             const winner = count === -3 ? 'X' : 'O';
-
-            this.scores[winner] += 1;
-
             return winner;
-
         }
 
+        // Update turns
         this.turns--;
         
+        // Check for draw
         if (!this.turns) {
             return 'Draw';    
         }
         
+        // Update player/opponent and indicate game is still active
         let newOpp = this.player;
         this.player = this.opponent;
         this.opponent = newOpp;
         return true;
     }
-
-    restartGame() {
-        this.turns = 9;
-
-        // Track current player
-        this.player = false;
-        this.opponent = false;
-
-        // Track marked cells
-        this.marked = new Set();
-
-        // Track count for players
-        this.gridVectors = new Map([['x0', 0], ['x1', 0], ['x2', 0], ['y0', 0], ['y1', 0], ['y2', 0], ['crossA', 0], ['crossB', 0]]);
-    }
-
-    setPlayer(player) {
-        this.player = player;
-        this.opponent = player === 'X' ? 'O' : 'X';
-    }
-
-
 }

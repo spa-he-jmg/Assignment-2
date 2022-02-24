@@ -1,9 +1,11 @@
 export function router(path) {
 
+    // Get routes
     const menu = document.getElementById('menu-wrapper');
     const game = document.getElementById('game-wrapper');
     const results = document.getElementById('results-wrapper');
 
+    // Display route
     switch (path) {
         case 'game':
             menu.classList.remove('active');

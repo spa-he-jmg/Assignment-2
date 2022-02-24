@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicTacToe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./public/main.css">
+</head>
+<body style="visibility: hidden;">
+    <!-- Fix for Firefox FOUC -->
+    <script>0</script>
+    <div id="menu-wrapper" class="page active">
+        <div id="title-wrapper">
+            <h1 id="title-1" class="title">Tic</h1>
+            <h1 id="title-2" class="title">Tac</h1>
+            <h1 id="title-3" class="title">Toe</h1>
+        </div>
+        <div id="menu">
+            <button id="start-game" class="menu-btn">Start Game</button>
+        </div>
+    </div>
+    <div id="game-wrapper" class="page">
+        <div id="turn-wrapper">
+            <h1><span id="player-turn" data-player="X">X</span>'s turn</h1>
+        </div>  
+        <div id="gameboard">
+            <!-- Insert board cells here -->
+        </div>
+    </div>
+    <div id="results-wrapper" class="page">
+        <h1 id="result">
+            <span id="player-result"></span>
+            <span id="result-message"></span>
+        </h1>
+        <button id="restart-game" class="menu-btn">Restart game</button>
+        <button id="end-game" class="menu-btn">Back to menu</button>
+    </div>
+    <script type="module" src="App.js"></script>
+</body>
+</html>
